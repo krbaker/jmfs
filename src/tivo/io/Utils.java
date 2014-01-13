@@ -180,7 +180,7 @@ public class Utils {
 		return t;
 	}
 	
-	private static <T extends Readable<T>, K extends T> T read( DataInput in, byte[] buf, int offset, K k ) throws Exception {
+	private static <T extends Readable<T>> T read( DataInput in, byte[] buf, int offset, T k ) throws Exception {
 		T r = k;
 		int readAheadSize = r.getReadAheadSize();
 		if( buf == null ) {
@@ -205,11 +205,11 @@ public class Utils {
 		return t;
 	}
 	
-	public static <T extends Readable<T>, K extends T> T read( DataInput in, K k ) throws Exception {
+	public static <T extends Readable<T>> T read( DataInput in, T k ) throws Exception {
 		return read( in, null, 0, (T)k );
 	}
 	
-	public static <T extends Readable<T>, K extends T> T read( byte[] buf, int offset, K k ) throws Exception {
+	public static <T extends Readable<T>> T read( byte[] buf, int offset, T k ) throws Exception {
 		return read( null, buf, offset, (T)k );
 	}
 	
