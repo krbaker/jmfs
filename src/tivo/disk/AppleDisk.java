@@ -159,6 +159,20 @@ public class AppleDisk extends Storage implements Writable {
 
 		freeSpace -= (partition.getSizeBlocks() * BLOCK_SIZE); 		
 	}
+
+	public void delPartition( int partition ) throws Exception {
+		
+		PartitionEntry remove_partition = partitions.get(partition);
+		
+		freeSpace += (remove_partition.getSizeBlocks() * BLOCK_SIZE);
+
+		partitions.remove( partition );
+		
+		for( PartitionEntry pe : partitions )
+			pe.setPartitionMapSizeBlocks( partitions.size() );
+
+	}
+
 	
 	
 
